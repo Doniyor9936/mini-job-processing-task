@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: mini-job-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:16
+    container_name: mini-job-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Antivirus9936
+      POSTGRES_DB: mini_job
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    container_name: mini-job-redis
+    ports:
+      - "6379:6379"
